@@ -11,6 +11,9 @@ def get_file_sha1(file_path: str) -> str:
     sha1 = hashlib.sha1()
     block_size = 1024 * 1024
     with open(file_path, 'rb') as f:
-        while block := f.read(block_size):
+        while True:
+            block = f.read(block_size)
+            if not block:
+                break
             sha1.update(block)
     return sha1.hexdigest()

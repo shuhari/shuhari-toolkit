@@ -18,4 +18,4 @@ Features includes:
 
 * shuhari_toolkit.collections
 
-  * find first matching element
+  * find first matching element, by lambda/key/attr
