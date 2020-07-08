@@ -2,6 +2,10 @@
 
 Commonly used python utilities.
 
+## Build Status
+
+![Travis-CI](https://www.travis-ci.org/shuhari/shuhari-toolkit.svg?branch=master)
+
 Features includes:
 
 - shuhari_toolkit.fileutils
