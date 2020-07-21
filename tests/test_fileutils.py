@@ -17,8 +17,24 @@ class FileUtilsTest(TestCase):
 
     def test_write_file_bytes(self):
         file_path = get_var_path('test.bin')
-        fileutils.write_file_bytes(file_path, b'')
+        result = fileutils.write_file_bytes(file_path, b'')
+        self.assertTrue(result)
         self.assertTrue(os.path.exists(file_path))
+
+        result = fileutils.write_file_bytes(file_path, b'')
+        self.assertFalse(result)
+
+        os.unlink(file_path)
+
+    def test_write_file_text(self):
+        file_path = get_var_path('test.txt')
+        result = fileutils.write_file_text(file_path, '')
+        self.assertTrue(result)
+        self.assertTrue(os.path.exists(file_path))
+
+        result = fileutils.write_file_text(file_path, '')
+        self.assertFalse(result)
+
         os.unlink(file_path)
 
     def test_read_write_file_json(self):

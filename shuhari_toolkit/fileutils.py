@@ -42,10 +42,29 @@ def write_file_bytes(file_path: str, content: bytes, force: bool = False) -> boo
     :return: Whether write successful.
     """
     if os.path.exists(file_path):
+        if not force:
+            return False
         os.unlink(file_path)
     ensure_parent_folder(file_path)
     with open(file_path, 'wb') as f:
         f.write(content)
+    return True
+
+
+def write_file_text(file_path: str, content: str, encoding: str = None, force: bool = False) -> bool:
+    """
+    Write text data to file, and ensure parent path exists.
+
+    :param file_path: Path of file
+    :param content: Text content
+    :param encoding File encoding, default to utf8
+    :param force: if true, overwrite target file if exists.
+                  if false and target file exists then return false.
+    :return: Whether write successful.
+    """
+    encoding = encoding or 'utf8'
+    byte_content = content.encode(encoding)
+    return write_file_bytes(file_path, byte_content, force=force)
 
 
 def read_file_json(file_path: str):
